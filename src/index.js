@@ -43,6 +43,28 @@ app.put("/repositories/:id", (request, response) => {
   repository.techs = techs;
 
   return response.json(repository);
+  
+  // outra possibilidade
+  /* const { id } = request.params;
+  const { title, url, techs } = request.body;
+
+  repositoryIndex = repositories.findIndex(repository => repository.id === id);
+
+  if (repositoryIndex < 0) {
+    return response.status(404).json({ error: "Repository not found" });
+  }
+
+  const updatedRepository = {
+    title,
+    url, 
+    techs
+  }
+
+  const repository = { ...repositories[repositoryIndex], ...updatedRepository };
+
+  repositories[repositoryIndex] = repository;
+
+  return response.status(201).json(repository); */
 });
 
 app.delete("/repositories/:id", (request, response) => {
